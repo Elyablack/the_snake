@@ -50,6 +50,7 @@ def handle_keys(snake):
 
 class GameObject:
     """Базовый класс для всех игровых объектов."""
+
     def __init__(self, body_color=None):
         """Инициализирует игровой объект."""
         self.body_color = body_color
@@ -62,6 +63,7 @@ class GameObject:
 
 class Apple(GameObject):
     """Класс, представляющий яблоко в игре."""
+
     def __init__(self, body_color=APPLE_COLOR):
         """Инициализирует яблоко."""
         super().__init__(body_color)
@@ -87,6 +89,7 @@ class Apple(GameObject):
 
 class Snake(GameObject):
     """Класс, представляющий змейку в игре."""
+
     def __init__(self):
         """Инициализация змейки."""
         super().__init__(SNAKE_COLOR)
@@ -161,7 +164,6 @@ class Snake(GameObject):
 
 def main():
     """Основная функция для запуска игры."""
-
     apple = Apple()
     snake = Snake()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
