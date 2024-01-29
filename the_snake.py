@@ -54,8 +54,9 @@ DIRECTION_MAP = {
 class GameObject:
     """Базовый класс для всех игровых объектов."""
 
-    def __init__(self, body_color=None):
+    def __init__(self, position=(0, 0), body_color=None):
         """Инициализирует игровой объект."""
+        self.position = position
         self.body_color = body_color
 
     def draw(self, surface, position, fill_color, border_color=BORDER_COLOR):
