@@ -1,4 +1,4 @@
-from random import randint
+from random import randint # testing the new features
 
 import pygame as pg
 
