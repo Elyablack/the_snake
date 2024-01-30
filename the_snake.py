@@ -15,7 +15,7 @@ LEFT = (-1, 0)
 RIGHT = (1, 0)
 
 # Цвета:
-BOARD_BACKGROUND_COLOR = (0, 0, 0)
+BOARD_BACKGROUND_COLOR = (255, 255, 255)
 BORDER_COLOR = (93, 216, 228)
 APPLE_COLOR = (255, 0, 0)
 SNAKE_COLOR = (0, 255, 0)
@@ -183,7 +183,7 @@ def main():
     pg.init()
 
     snake = Snake()
-    apple = Apple()
+    apple = Apple(occupied_posits=snake.positions)
     screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
 
     running = True
