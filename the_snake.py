@@ -182,19 +182,21 @@ def main():
     global running, paused
     pg.init()
 
+    screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
+    screen.fill(BOARD_BACKGROUND_COLOR)
+
     snake = Snake()
     apple = Apple(occupied_posits=snake.positions)
-    screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
 
     running = True
     paused = False
 
+    apple.draw(screen)
+    
     while running:
         clock.tick(SPEED)
         handle_keys(snake)
-        screen.fill(BOARD_BACKGROUND_COLOR)
         snake.draw(screen)
-        apple.draw(screen)
         pg.display.update()
 
         if not paused:
@@ -202,8 +204,12 @@ def main():
             snake.move()
             if snake.get_head_position() in snake.positions[1:]:
                 snake.reset()
+                screen.fill(BOARD_BACKGROUND_COLOR)
+                apple.randomize_position(occupied_posits=snake.positions)
+                apple.draw(screen)
             elif snake.get_head_position() == apple.position:
                 apple.randomize_position(occupied_posits=snake.positions)
+                apple.draw(screen)
                 snake.length += 1
 
     pg.quit()
