@@ -126,10 +126,6 @@ class Snake(GameObject):
             self.positions.pop() if len(self.positions) > self.length else None
         )
 
-    def check_collisions(self, apple):
-        """Проверяет столкновение змейки с яблоком."""
-        return self.positions[0] == apple.position
-
     def reset(self):
         """Сбрасывает змейку в начальное состояние после столкновения."""
         self.length = 1
@@ -206,7 +202,7 @@ def main():
             snake.move()
             if snake.get_head_position() in snake.positions[1:]:
                 snake.reset()
-            elif snake.check_collisions(apple):
+            elif snake.get_head_position() == apple.position:
                 apple.randomize_position(occupied_posits=snake.positions)
                 snake.length += 1
 
