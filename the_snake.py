@@ -67,23 +67,22 @@ class GameObject:
 class Apple(GameObject):
     """Класс, представляющий яблоко в игре."""
 
-    def __init__(self, occupied_positions=[]):
+    def __init__(self, occupied_posits=[]):
         """Инициализирует яблоко."""
         super().__init__(body_color=APPLE_COLOR)
-        self.occupied_positions = occupied_positions
-        self.randomize_position(self.occupied_positions)
+        self.occupied_posits = occupied_posits
+        self.randomize_position(self.occupied_posits)
 
-    def randomize_position(self, occupied_positions):
+    def randomize_position(self, occupied_posits=None):
         """Случайным образом изменяет позицию яблока на поле."""
         while True:
             new_position = (
                 randint(0, GRID_WIDTH - 1) * GRID_SIZE,
                 randint(0, GRID_HEIGHT - 1) * GRID_SIZE
             )
-            if new_position not in self.occupied_positions:
+            if not occupied_posits or new_position not in occupied_posits:
                 break
         self.position = new_position
-        self.occupied_positions = occupied_positions
 
     def draw(self, surface):
         """Отрисовывает яблоко на указанной поверхности."""
@@ -208,7 +207,7 @@ def main():
             if snake.get_head_position() in snake.positions[1:]:
                 snake.reset()
             elif snake.check_collisions(apple):
-                apple.randomize_position(occupied_positions=snake.positions)
+                apple.randomize_position(occupied_posits=snake.positions)
                 snake.length += 1
 
     pg.quit()
