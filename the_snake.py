@@ -73,7 +73,7 @@ class Apple(GameObject):
         self.occupied_positions = occupied_positions
         self.randomize_position()
 
-    def randomize_position(self):
+    def randomize_position(self):  #Нужен параметр содержащего занятые ячейки. Так же его нужно прописать и в аргументом конструктора и в поле конструктора.
         """Случайным образом изменяет позицию яблока на поле."""
         while True:
             new_position = (
