@@ -71,9 +71,9 @@ class Apple(GameObject):
         """Инициализирует яблоко."""
         super().__init__(body_color=APPLE_COLOR)
         self.occupied_positions = occupied_positions
-        self.randomize_position()
+        self.randomize_position(self.occupied_positions)
 
-    def randomize_position(self):
+    def randomize_position(self, occupied_positions):
         """Случайным образом изменяет позицию яблока на поле."""
         while True:
             new_position = (
@@ -83,6 +83,7 @@ class Apple(GameObject):
             if new_position not in self.occupied_positions:
                 break
         self.position = new_position
+        self.occupied_positions = occupied_positions
 
     def draw(self, surface):
         """Отрисовывает яблоко на указанной поверхности."""
@@ -181,8 +182,8 @@ def main():
     global running, paused
     pg.init()
 
-    apple = Apple()
     snake = Snake()
+    apple = Apple()
     screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
 
     running = True
@@ -202,7 +203,7 @@ def main():
             if snake.get_head_position() in snake.positions[1:]:
                 snake.reset()
             elif snake.check_collisions(apple):
-                apple.randomize_position()
+                apple.randomize_position(occupied_positions=snake.positions)
                 snake.length += 1
 
     pg.quit()
