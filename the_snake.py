@@ -95,7 +95,10 @@ class Snake(GameObject):
 
     def __init__(self):
         """Инициализация змейки."""
-        super().__init__(position=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2), body_color=SNAKE_COLOR)
+        super().__init__(
+            position=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2),
+            body_color=SNAKE_COLOR
+        )
         self.reset()
         self.direction = RIGHT
         self.next_direction = None
@@ -120,8 +123,9 @@ class Snake(GameObject):
             ((head_position[1] + (y * GRID_SIZE)) % SCREEN_HEIGHT)
         )
         self.positions.insert(0, new)
-        self.last = self.positions.pop() \
-            if len(self.positions) > self.length else None
+        self.last = (
+            self.positions.pop() if len(self.positions) > self.length else None
+        )
 
     def check_collisions(self, apple):
         """Проверяет столкновение змейки с яблоком."""
@@ -168,8 +172,10 @@ def handle_keys(snake):
             elif event.key == pg.K_p:
                 paused = not paused
             else:
-                direction_key = (0, event.key) if event.key == pg.K_p else \
-                    (snake.direction, event.key)
+                direction_key = (
+                    (0, event.key) if event.key == pg.K_p
+                    else (snake.direction, event.key)
+                )
                 new_direct = DIRECTION_MAP.get(direction_key, snake.direction)
                 if (new_direct[0] * -1, new_direct[1] * -1) != snake.direction:
                     snake.next_direction = new_direct
