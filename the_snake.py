@@ -192,7 +192,7 @@ def main():
     paused = False
 
     apple.draw(screen)
-    
+
     while running:
         clock.tick(SPEED)
         handle_keys(snake)
