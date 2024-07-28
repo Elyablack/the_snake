@@ -1,8 +1,5 @@
 # Змейка
 
-<p align="center">
-  <img src="images/example.png" alt="Интерфейс" width="200"/>
-</p>
 ![Интерфейс](example.png)
 
 ## Установка 
